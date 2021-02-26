@@ -45,7 +45,7 @@ namespace WilliamsGameOfPig
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
+					pattern: "{controller=Game}/{action=Index}/{id?}");
 			});
 		}
 	}

@@ -5,18 +5,20 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using WilliamsGameOfPig.Models;
 
 namespace WilliamsGameOfPig.Controllers
 {
-	public class HomeController : Controller
+	public class GameController : Controller
 	{
-		public HomeController()
-		{
-		}
 
 		public IActionResult Index()
 		{
+			return View();
+		}
+
+		public IActionResult NewGame()
+		{
+			//TODO build game state object and pass it to view with view model holding everything needed to display proper game
 			return View();
 		}
 	}
