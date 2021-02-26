@@ -1,11 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Game";
 }
-
 <div class="text-center">
-    <h1 class="display-4">The Game of Pig</h1>
+    <h1 class="display-4" style="margin-top: 65px">The Game of Pig</h1>
 </div>
-<div class="col-sm-10">
-    <a asp-action="NewGame" class="btn btn-primary">Start New Game</a>
+<div class="game-container">
+    <a asp-action="NewGame" method="post" class="btn btn-primary "><span class="fas fa-plus"></span> Start New Game</a>
+    <div class="bg-dark p-2 mt-2 rounded">
+        <h2 class="h2 mt-1 text-white">Scoreboard</h2>
+        <div class="progress" style="height: 40px; font-size: 20px" >
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success active align-middle text-dark" role="progressbar"
+                 style="width: 50%;">
+                <div class="pl-2 font-weight-bold">User: 10</div>
+            </div>
+        </div>
+        <div class="progress mt-2" style="height: 40px; font-size: 20px">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger active align-middle text-dark" role="progressbar"
+                 style="width: 90%;">
+                <div class="pl-2 font-weight-bold">Comp: 18</div>
+            </div>
+        </div>
+    </div>
 </div>
+
     

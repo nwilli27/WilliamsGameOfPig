@@ -16,6 +16,7 @@ namespace WilliamsGameOfPig.Controllers
 			return View();
 		}
 
+		[HttpPost]
 		public IActionResult NewGame()
 		{
 			//TODO build game state object and pass it to view with view model holding everything needed to display proper game
