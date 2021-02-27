@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace WilliamsGameOfPig.Models
 {
-	[Serializable]
 	public class PigPlayer
 	{
 		#region Properties

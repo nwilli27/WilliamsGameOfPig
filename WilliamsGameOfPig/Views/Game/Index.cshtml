@@ -1,47 +1,49 @@
-﻿@{
+﻿@model PigGameViewModel
+@{
     ViewData["Title"] = "Game";
+    GameOfPigSession session = new GameOfPigSession(Context.Session);
+    PigGame game = session.GetPigGame();
 }
 <div class="text-center">
     <h1 class="display-4" style="margin-top: 65px">The Game of Pig</h1>
 </div>
 
-<a asp-action="NewGame" method="post" class="btn btn-primary "><span class="fas fa-plus"></span> Start New Game</a>
+<a asp-action="NewGame" class="btn btn-primary "><span class="fas fa-plus"></span> Start New Game</a>
 
 <div class="bg-dark p-2 mt-2 rounded">
     <h2 class="h2 mt-1 text-white text-center">Scoreboard</h2>
     <div class="progress" style="height: 40px; font-size: 20px">
         <div class="progress-bar progress-bar-striped progress-bar-animated bg-success active align-middle text-dark" role="progressbar"
-             style="width: 50%;">
-            <div class="pl-2 font-weight-bold">User: 10</div>
+             style="width: @($"{@Model.GetScorePercentage(game.User.Score, game.MaxScore)}")">
+            <div class="pl-2 font-weight-bold">User: @game.User.Score</div>
         </div>
     </div>
     <div class="progress mt-2" style="height: 40px; font-size: 20px">
         <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning active align-middle text-dark" role="progressbar"
-             style="width: 90%;">
-            <div class="pl-2 font-weight-bold">Computer: 18</div>
+             style="width: @($"{@Model.GetScorePercentage(game.Computer.Score, game.MaxScore)}")">
+            <div class="pl-2 font-weight-bold">Computer: @game.Computer.Score</div>
         </div>
     </div>
     <div class="text-center p-2">
-        <div class="lead text-white" style="font-size: 25px">This is the current status of the game!</div>
+        <div class="lead text-white" style="font-size: 25px">@game.GameStatus</div>
     </div>
 </div>
 
 <div class="border bg-dark mt-2 border-dark rounded">
     <div class="row">
         <div class="col p-5">
-            <img src="https://mdbootstrap.com/img/snippets/dice-5.png" alt="Dice" class="img-fluid bg-dark mx-auto d-block rounded w-auto">
+            <img src="@Model.GetBootstrapDiceImagePath(@game.CurrentDiceOne)" alt="" class="img-fluid bg-dark mx-auto d-block rounded w-auto">
         </div>
         <div class="col p-5">
-            <img src="https://mdbootstrap.com/img/snippets/dice-2.png" alt="Dice" class="img-fluid bg-dark mx-auto d-block rounded w-auto">
+            <img src="@Model.GetBootstrapDiceImagePath(@game.CurrentDiceTwo)" alt="" class="img-fluid bg-dark mx-auto d-block rounded w-auto">
         </div>
     </div>
 </div>
-
 <div class="text-center">
     <div class="btn-group mt-3 pl-5 pr-5" style="width: 100%">
-        <a asp-action="NewGame" method="post" class="btn btn-success btn-lg p-2 float-left"><span class="fas fa-sync-alt"></span> User Roll</a>
-        <a asp-action="NewGame" method="post" class="btn btn-warning btn-lg"><span class="fas fa-robot"></span> Computer Roll</a>
-        <a asp-action="NewGame" method="post" class="btn btn-danger btn-lg float-right"><span class="far fa-hand-paper"></span> Hold</a>
+        <a asp-action="UserRoll" class="btn btn-success btn-lg p-2 float-left"><span class="fas fa-sync-alt"></span> User Roll</a>
+        <a asp-action="ComputerRoll" class="btn btn-warning btn-lg"><span class="fas fa-robot"></span> Computer Roll</a>
+        <a asp-action="Hold" class="btn btn-danger btn-lg float-right"><span class="far fa-hand-paper"></span> Hold</a>
     </div>
 </div>
     

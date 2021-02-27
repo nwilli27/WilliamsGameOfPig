@@ -5,19 +5,18 @@ using System.Threading.Tasks;
 
 namespace WilliamsGameOfPig.Models
 {
-	[Serializable]
 	public class PigRoll
 	{
 		#region Members
 
-		private static readonly Random random = new Random();
+		private static readonly Random Random = new Random();
 
 		#endregion
 
 		#region Constants
 
 		private const int StartingDice = 1;
-		private const int EndingDice = 6;
+		private const int EndingDice = 7;
 
 		#endregion
 
@@ -44,7 +43,7 @@ namespace WilliamsGameOfPig.Models
 
 		private static int getRandomRoll()
 		{
-			return random.Next(StartingDice, EndingDice);
+			return Random.Next(StartingDice, EndingDice);
 		} 
 
 		#endregion

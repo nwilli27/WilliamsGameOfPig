@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace WilliamsGameOfPig.Models
 {
-	[Serializable]
 	public class PigTurn
 	{
 		#region Properties
@@ -27,12 +26,17 @@ namespace WilliamsGameOfPig.Models
 
 		#region Public Methods
 
-		public bool RollDice()
+		public PigRoll RollDice()
 		{
 			var currentRoll = new PigRoll();
 			currentRoll.RandomlyAssignDice();
-			this.Rolls.Add(currentRoll);
-			return currentRoll.HasAOne;
+
+			if (!currentRoll.HasAOne)
+			{
+				this.Rolls.Add(currentRoll);
+			}
+
+			return currentRoll;
 		}
 
 		#endregion
