@@ -5,11 +5,22 @@ using System.Threading.Tasks;
 
 namespace WilliamsGameOfPig.Models
 {
+	/// <summary>
+	/// Holds functionality needed for the Pig Game view
+	///
+	/// Author: Nolan Williams
+	/// Date:	2/27/21
+	/// </summary>
 	public class PigGameViewModel
 	{
 		#region Public Methods
 
-		public string GetDiceImagePath(int diceValue)
+		/// <summary>
+		/// Gets the bootstrap dice image path based on the given [diceValue].
+		/// </summary>
+		/// <param name="diceValue">The dice value.</param>
+		/// <returns>The bootstrap dice image path.</returns>
+		public string GetBootstrapDiceImagePath(int diceValue)
 		{
 			if (diceValue >= 1 && diceValue <= 6)
 			{
@@ -19,9 +30,16 @@ namespace WilliamsGameOfPig.Models
 			return string.Empty;
 		}
 
-		public string GetProgressBarPercentage(int score, int maxScore)
+		/// <summary>
+		/// Gets the score percentage based on the given [score] & [maxScore].
+		/// </summary>
+		/// <param name="score">The score.</param>
+		/// <param name="maxScore">The maximum score.</param>
+		/// <returns>The scores percentage based on the max score.</returns>
+		public string GetScorePercentage(int score, int maxScore)
 		{
 			var percent = (double) score / (double) maxScore * 100;
+			percent = percent > 100 ? 100 : percent;
 			return $"{percent}%";
 		}
 
