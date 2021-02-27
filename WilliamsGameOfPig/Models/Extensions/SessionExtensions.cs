@@ -26,7 +26,8 @@ namespace WilliamsGameOfPig.Models.Extensions
 		/// <param name="value">The value.</param>
 		public static void SetObject<T>(this ISession session, string key, T value)
 		{
-			session.SetString(key, JsonConvert.SerializeObject(value));
+			var serialized = JsonConvert.SerializeObject(value);
+			session.SetString(key, serialized);
 		}
 
 		/// <summary>
