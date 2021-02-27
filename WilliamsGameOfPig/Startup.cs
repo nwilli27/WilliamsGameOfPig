@@ -22,7 +22,9 @@ namespace WilliamsGameOfPig
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddControllersWithViews();
+			services.AddMemoryCache();
+			services.AddSession();
+			services.AddControllersWithViews().AddNewtonsoftJson();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -35,11 +37,11 @@ namespace WilliamsGameOfPig
 			{
 				app.UseHsts();
 			}
+
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
-
+			app.UseSession();
 			app.UseRouting();
-			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
 			{
