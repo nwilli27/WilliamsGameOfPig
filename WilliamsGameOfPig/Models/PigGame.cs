@@ -5,6 +5,12 @@ using System.Threading.Tasks;
 
 namespace WilliamsGameOfPig.Models
 {
+	/// <summary>
+	/// Holds functionality to manage the Pig Game state
+	///
+	/// Author: Nolan Williams
+	/// Date:	2/27/21
+	/// </summary>
 	public class PigGame
 	{
 		#region Constants
@@ -23,22 +29,93 @@ namespace WilliamsGameOfPig.Models
 
 		#region Properties
 
+		/// <summary>
+		/// Gets or sets the user.
+		/// </summary>
+		/// <value>
+		/// The user.
+		/// </value>
 		public PigPlayer User { get; set; }
+
+		/// <summary>
+		/// Gets or sets the computer.
+		/// </summary>
+		/// <value>
+		/// The computer.
+		/// </value>
 		public PigPlayer Computer { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this instance is the user turn.
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if this instance is user turn; otherwise, <c>false</c>.
+		/// </value>
 		public bool IsUserTurn { get; set; }
+
+		/// <summary>
+		/// Gets the maximum score.
+		/// </summary>
+		/// <value>
+		/// The maximum score.
+		/// </value>
 		public int MaxScore { get; }
+
+		/// <summary>
+		/// Gets or sets the current turn.
+		/// </summary>
+		/// <value>
+		/// The current turn.
+		/// </value>
 		public PigTurn CurrentTurn { get; set; }
+
+		/// <summary>
+		/// Gets or sets the game status.
+		/// </summary>
+		/// <value>
+		/// The game status.
+		/// </value>
 		public string GameStatus { get; set; }
+
+		/// <summary>
+		/// Gets or sets the current dice one.
+		/// </summary>
+		/// <value>
+		/// The current dice one.
+		/// </value>
 		public int CurrentDiceOne { get; set; }
+
+		/// <summary>
+		/// Gets or sets the current dice two.
+		/// </summary>
+		/// <value>
+		/// The current dice two.
+		/// </value>
 		public int CurrentDiceTwo { get; set; }
 
+		/// <summary>
+		/// Gets a value indicating whether [user has won].
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if [user has won]; otherwise, <c>false</c>.
+		/// </value>
 		private bool UserHasWon => this.User.Score >= this.MaxScore;
+
+		/// <summary>
+		/// Gets a value indicating whether [computer has won].
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if [computer has won]; otherwise, <c>false</c>.
+		/// </value>
 		private bool ComputerHasWon => this.Computer.Score >= this.MaxScore;
 
 		#endregion
 
 		#region Construction
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PigGame"/> class.
+		/// </summary>
 		public PigGame()
 		{
 			this.User = new PigPlayer();
@@ -53,6 +130,9 @@ namespace WilliamsGameOfPig.Models
 
 		#region Public Methods
 
+		/// <summary>
+		/// Handles the game functionality for a user roll event.
+		/// </summary>
 		public void UserRoll()
 		{
 			if (!IsUserTurn) return;
@@ -65,6 +145,9 @@ namespace WilliamsGameOfPig.Models
 			this.IsUserTurn = !rolledAOne;
 		}
 
+		/// <summary>
+		/// Handles the game functionality for a user hold event.
+		/// </summary>
 		public void UserHold()
 		{
 			if (!IsUserTurn) return;
@@ -74,6 +157,9 @@ namespace WilliamsGameOfPig.Models
 			this.resetTurn();
 		}
 
+		/// <summary>
+		/// Handles the game functionality for a computer roll event.
+		/// </summary>
 		public void ComputerRoll()
 		{
 			if (IsUserTurn) return;
