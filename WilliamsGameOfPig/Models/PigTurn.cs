@@ -58,7 +58,7 @@ namespace WilliamsGameOfPig.Models
 		/// <summary>
 		/// Handles the functionality for a dice roll.
 		/// Deals with assigning random values 1-6 &
-		/// adding the role if it doesn't have a 1.
+		/// adding the roll if it doesn't have a 1.
 		/// </summary>
 		/// <returns>The roll that was created.</returns>
 		public PigRoll RollDice()

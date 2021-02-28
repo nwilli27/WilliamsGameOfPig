@@ -135,13 +135,15 @@ namespace WilliamsGameOfPig.Models
 		/// </summary>
 		public void UserRoll()
 		{
-			if (!IsUserTurn) return;
+			if (!IsUserTurn || UserHasWon || ComputerHasWon) return;
 
 			var currentRoll = this.CurrentTurn.RollDice();
 			var rolledAOne = currentRoll.HasAOne;
+
 			this.setCurrentDice(currentRoll);
 			this.handleUserScoreOnRoll(rolledAOne);
 			this.handleGameStatusOnUserRoll(rolledAOne);
+
 			this.IsUserTurn = !rolledAOne;
 		}
 
@@ -150,10 +152,11 @@ namespace WilliamsGameOfPig.Models
 		/// </summary>
 		public void UserHold()
 		{
-			if (!IsUserTurn) return;
+			if (!IsUserTurn || UserHasWon || ComputerHasWon) return;
+
+			this.GameStatus = UserHasHoldMsg;
 
 			this.IsUserTurn = false;
-			this.GameStatus = UserHasHoldMsg;
 			this.resetTurn();
 		}
 
@@ -162,14 +165,16 @@ namespace WilliamsGameOfPig.Models
 		/// </summary>
 		public void ComputerRoll()
 		{
-			if (IsUserTurn) return;
+			if (IsUserTurn || UserHasWon || ComputerHasWon) return;
 
 			this.resetTurn();
 			var currentRoll = this.CurrentTurn.RollDice();
 			var rolledAOne = currentRoll.HasAOne;
+
 			this.setCurrentDice(currentRoll);
 			this.handleComputerScoreOnRoll(rolledAOne);
 			this.handleGameStatusOnComputerRoll(rolledAOne);
+
 			this.IsUserTurn = true;
 			this.resetTurn();
 		}
@@ -185,7 +190,7 @@ namespace WilliamsGameOfPig.Models
 				var isBackTo0 = this.User.Score - this.CurrentTurn.Total <= 0;
 				this.User.Score = isBackTo0 ? 0 : this.User.Score - this.CurrentTurn.Total;
 			}
-			else if (!rolledAOne)
+			else
 			{
 				this.User.Score += this.CurrentTurn.CurrentRoll.DiceTotal;
 			}
