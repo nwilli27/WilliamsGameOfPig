@@ -29,17 +29,6 @@ namespace WilliamsGameOfPig.Controllers
 		}
 
 		/// <summary>
-		/// The current game state page.
-		/// Redirected to by other actions to maintain
-		/// game state through refreshing etc.
-		/// </summary>
-		/// <returns>Redirects to the index page.</returns>
-		public IActionResult Game()
-		{
-			return RedirectToAction("Index", new PigGameViewModel());
-		}
-
-		/// <summary>
 		/// Handles new game action and redirect to game page.
 		/// </summary>
 		/// <returns>Redirects to Game page after updating game state.</returns>
@@ -49,7 +38,7 @@ namespace WilliamsGameOfPig.Controllers
 
 			session.SetPigGame(new PigGame());
 
-			return RedirectToAction("Game");
+			return RedirectToAction("Index");
 		}
 
 		/// <summary>
@@ -64,7 +53,7 @@ namespace WilliamsGameOfPig.Controllers
 			pigGame.UserRoll();
 			session.SetPigGame(pigGame);
 
-			return RedirectToAction("Game");
+			return RedirectToAction("Index");
 		}
 
 		/// <summary>
@@ -79,7 +68,7 @@ namespace WilliamsGameOfPig.Controllers
 			pigGame.ComputerRoll();
 			session.SetPigGame(pigGame);
 
-			return RedirectToAction("Game");
+			return RedirectToAction("Index");
 		}
 
 		/// <summary>
@@ -94,7 +83,7 @@ namespace WilliamsGameOfPig.Controllers
 			pigGame.UserHold();
 			session.SetPigGame(pigGame);
 
-			return RedirectToAction("Game");
+			return RedirectToAction("Index");
 		}
 	}
 }
